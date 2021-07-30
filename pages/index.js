@@ -62,7 +62,7 @@ export default function Home() {
 			<main className="mainLayout">
 				<SideBar>
 					<header className="border-b pb-2 mb-4">
-						<a href="/" className="logo"><img src={logo} alt="Diseñamela.com" /></a>
+						<a href="https://diseñamela.com" className="logo"><img src={logo} alt="Diseñamela.com" /></a>
 					</header>
 
 					{/* <div className="row">
