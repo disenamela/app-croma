@@ -1,0 +1,152 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+	@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&display=swap');
+	@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
+
+	:root {
+		font-size: 15px;
+	}
+	* {
+		font-family: 'Inconsolata';
+	}
+	body {
+		overflow-x: hidden;
+	}
+
+	#__next {
+		min-height: 100vh;
+		display: flex;
+		flex-wrap: wrap;
+		flex-direction: column;
+		justify-content: space-between;
+	}
+
+	/*=================================================================================================
+	LAYOUT
+	=================================================================================================*/
+
+	.clearfix::after {
+		display: block;
+		clear: both;
+		content: "";
+	}
+
+	/* textos desbordados con ellipsis */
+	.text-ellipsis {
+		text-overflow: ellipsis;
+		overflow: hidden;
+		white-space: nowrap;
+		min-width: 0;
+	}
+
+	.col-ellipsis {
+		min-width: 0;
+	}
+
+	.col-ellipsis * {
+		text-overflow: ellipsis;
+		overflow: hidden;
+		white-space: nowrap;
+		min-width: 0;
+	}
+
+	.cols {
+		@apply grid;
+		@apply gap-4;
+		@apply grid-cols-12;
+	}
+
+	.center-v {
+		@apply flex;
+		@apply items-center;
+	}
+
+	.h-min-screen {
+		min-height: 100vh;
+	}
+
+	.mainGrid {
+		@apply grid-cols-1;
+		@apply md:grid-cols-2;
+		@apply lg:grid-cols-3;
+		@apply grid;
+		@apply gap-4;
+		@apply mb-4;
+	}
+
+	.withScroll {
+		overflow-y: scroll;
+	}
+
+	.withFakeScroll {
+		padding-right: 24px;
+	}
+
+	/* Handle */ 
+	.withScroll::-webkit-scrollbar-thumb {
+		@apply bg-gray-200;
+		border: 9px solid rgba(0, 0, 0, 0);
+		background-clip: padding-box;
+		border-radius: 24px;
+	}
+	
+	/* Handle on hover */
+	.withScroll::-webkit-scrollbar-thumb:hover {
+		@apply bg-gray-300;
+	}
+	
+	.withScroll::-webkit-scrollbar {
+		width: 24px;
+		height: 14px;
+	}
+	.withScroll::-webkit-scrollbar-corner {
+		background-color: transparent;
+	}
+	
+	.withScroll::-webkit-scrollbar:horizontal {
+		height: 24px;
+		width: 14px;
+	}
+
+	/*=================================================================================================
+	INACTIVE CLASS
+	=================================================================================================*/
+
+	.inactive {
+		opacity: 0;
+		pointer-events: none;
+		@apply transition-opacity;
+		@apply duration-300;
+	}
+
+	.inactive.active {
+		opacity: 1;
+		pointer-events: auto;
+	}
+
+	/*=================================================================================================
+	TYPOGRAPHY
+	=================================================================================================*/
+
+	h1 {
+		@apply text-2xl;
+		@apply font-bold;
+		@apply mt-1;
+		@apply mb-2;
+	}
+
+	h3 {
+		@apply font-bold;
+		@apply mb-2;
+		@apply mt-4;
+	}
+
+	p, label, input, select, .btn {
+		@apply text-base;
+		@apply text-gray-400;
+	}
+}
+

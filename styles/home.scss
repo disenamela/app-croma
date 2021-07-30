@@ -1,0 +1,139 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton:wght@400;700&display=swap');
+
+
+
+body {
+	@apply bg-main-50;
+}
+
+header {
+	.logo {
+		display: inline-block;
+		
+		img {
+			height: 4rem;
+		}
+	}
+}
+
+main {
+	min-height: 100vh;
+}
+
+.mainLayout {
+	display: grid;
+	grid-template-columns: auto 1fr;
+	.sideBar {
+		background: #fff;
+		@apply py-2;
+		left: 0;
+		height: 100vh;
+		width: 24rem;
+		.__picker {
+			width: 100% !important;
+		}
+	}
+	#results {
+		width: 100%;
+		height: 100vh;
+		overflow-y: scroll;
+		display: flex;
+		align-items: center;
+
+		.__textPreview {
+			@apply flex gap-4 flex-col py-6;
+			.__text {
+				text-overflow: ellipsis;
+				overflow: hidden;
+				white-space: nowrap;
+				line-height: 1.2em;
+				text-align: left !important;
+				margin: 0;
+				align-self: center;
+				@apply transition-all duration-300 text-gray-800;
+				&.--h1,
+				&.--h2 {
+					margin-bottom: -.2em;
+				}
+				&.--h3,
+				&.--h4 {
+					margin-bottom: -.1em;
+				}
+				&.--h1,
+				&.--h2,
+				&.--h3,
+				&.--h4,
+				&.--h5,
+				&.--h6 {
+					font-weight: bold;
+					letter-spacing: -.015em;
+				}
+			}
+
+			.__combo {
+				grid-template-columns: max(10vw, 150px) 1fr;
+				@apply grid gap-4 grid-flow-col align-baseline;
+			}
+
+			.__desc {
+				text-align: right;
+				display: flex;
+				flex-direction: row;
+				align-self: flex-end;
+				justify-content: flex-end;
+				@apply gap-4;
+
+				h3 {
+					align-self: baseline;
+					margin: 0;
+					line-height: 1.2rem;
+					font-weight: bold;
+					order: 5;
+					@apply text-base text-main-500 text-opacity-50 uppercase;
+				}
+
+				p {
+					float: right;
+					width: auto;
+					display: inline-block;
+					@apply text-base m-0;
+				}
+			}
+		}
+	}
+}
+
+h1 {
+	font-family: "Poppins";
+	font-size: 4rem;
+}
+
+
+
+p {
+	@apply my-3;
+
+	code {
+		display: inline;
+		padding: 0.25rem 0.5rem;
+		@apply bg-main-500 bg-opacity-10 rounded text-main-500;
+	}
+}
+
+label {
+	@apply font-bold text-gray-600 block mb-1;
+}
+
+input,
+select {
+	@apply w-full rounded-lg border border-gray-500 border-opacity-10 bg-gray-100 p-2 mb-3 text-gray-500 h-7;
+}
+
+.row {
+	@apply gap-4;
+}
