@@ -32,7 +32,7 @@ export default function Heading(pageTitle = '', desc = '', image = '', url = '')
 
 
 	const description = {
-		ES: 'Contamos con la experiencia de dos generaciones brindando servicio, calidad y atención a nuestros clientes. Nuestro objetivo es asesorarlo para lograr la mejor presentación de su producto sin descuidar los costos ya que son muchas las variantes que puede conseguir. Para ello podemos ofrecerle diferentes modelos y materiales. Tenemos personal capacitado que lo ayudará en el armado de su diseño para lograr un producto personalizado.',
+		ES: 'Genera una paleta cromática a partir de un color base.',
 	};
 
 	const locale = {
@@ -41,7 +41,7 @@ export default function Heading(pageTitle = '', desc = '', image = '', url = '')
 		PT: 'pt_BR'
 	};
 
-	let title = 'TypeScale - Diseñamela';
+	let title = 'Croma - Diseñamela';
 	// if (pageTitle) {
 	// 	title = pageTitle + ' | ' + title;
 	// }
@@ -55,7 +55,7 @@ export default function Heading(pageTitle = '', desc = '', image = '', url = '')
 			<meta name="og:description" content={desc || description[lang]} />
 			<meta name="lang" content={lang.toLowerCase()} />
 			<meta name="og:locale" content={locale[lang]} />
-			<meta name="og:url" content={"https://typescale.diseñamela.com" + url} />
+			<meta name="og:url" content={"https://croma.diseñamela.com" + url} />
 			<link rel="image_src" href={image || preview} />
 			<meta name="og:image" content={image || preview} />
 

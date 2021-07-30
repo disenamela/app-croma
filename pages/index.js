@@ -2,19 +2,20 @@ import Head from 'next/head'
 import { useEffect, useState } from 'react';
 import Heading from '../adapters/Headings';
 
-import logo from '../public/logo-typescale.png';
+import logo from '../public/logo-app.png';
 import { createRangeColor, getContrastText } from '../utils/colors';
-import { ChromePicker } from 'react-color';
 import styled from 'styled-components';
+import { ColorPicker, useColor } from 'react-color-palette';
 
 export default function Home() {
+	const defaultColor = '#9d61ff'
+
 	const [form, setForm] = useState({
-		color: '#00ff00',
-		baseSize: 15,
-		ratio: 1.200,
-		fontFamily: 'Open Sans',
-		previewText: 'Lorem ipsum dolor sit ammet',
+		color: defaultColor,
 	})
+
+	// useColor for color picker
+	const [color, setColor] = useColor("hex", defaultColor)
 
 	const [results, setResults] = useState(null)
 	
@@ -32,20 +33,25 @@ export default function Home() {
 	const handleInputChange = ( e ) => {
 		setForm( (prevState) => ({ ...prevState, [e.target.name]: e.target.value }) )
 	}
-	const handlePickerChange = ( selected ) => {
-		if(selected.rgb.a !== 1) {
-			// alpha
-			const c = selected.rgb
-			const color = `rgba(${c.r},${c.g},${c.b},${c.a})`
-			setForm( (prevState) => ({ ...prevState, color }) )
-		} else {
-			setForm( (prevState) => ({ ...prevState, color: selected.hex }) )
-		}
+
+
+	const handleChangeColor = (selectedColor) => {
+		setColor(selectedColor)
+		setForm( (prevState) => ({ ...prevState, color: selectedColor.hex }) )
 	}
 
-	console.log(results);
-	const arrayResults = !!results ? Object.entries(results) : [] 
-	console.log(arrayResults);
+	const colorKeys = [
+		50,
+		100,
+		200,
+		300,
+		400,
+		500,
+		600,
+		700,
+		800,
+		900,
+	]
 
 	return (
 		<>
@@ -82,33 +88,43 @@ export default function Home() {
 						</div>
 					</div> */}
 
-					<div className='row'>
+					{/* <div className='row'>
 						<div className='col'>
 							<label htmlFor="">Color</label>
 							<input type="text" name='color' placeholder='#FFFFFF' value={form.color} onChange={handleInputChange} />
 						</div>
-					</div>
+					</div> */}
 					<div className='row'>
 						<div className='col'>
-							<ChromePicker
-								className='__picker'
-								color={form.color}
-								onChangeComplete={handlePickerChange}
-							/>
+							<ColorPicker width={300} height={228} color={color} onChange={handleChangeColor} hideHSV />
 						</div>
 					</div>
 
 				</SideBar>
 
 				<section id="results">
-					<div className="container-fluid">
-						<div className="__textPreview">
-							{arrayResults.map( ([key, v]) => (
-								<ColorStep
-									color={v}
-								/>
-							 ) )}
-						</div>
+					<div className="container-sm">
+						{results &&
+							<>
+								<h2 className='mb-2'>Color principal</h2>
+								<PalleteContainer>
+									<ColorStep
+										color={results.default}
+									/>
+								</PalleteContainer>
+								<h2 className='mt-4 mb-2'>Paleta</h2>
+								<PalleteContainer>
+									{colorKeys.map( (key) => (
+										<ColorStep
+											className='__colorStep'
+											key={key}
+											name={key}
+											color={results[key]}
+										/>
+									))}
+								</PalleteContainer>
+							</>
+						}
 					</div>
 				</section>
 
@@ -120,15 +136,41 @@ export default function Home() {
 const ColorContainer = styled.div`
 	background: ${({color})=>color};
 	color: ${({contrastColor})=>contrastColor};
+	padding: 1rem;
+	min-width: 4rem;
+	display: flex;
 `
 
-const ColorStep = ({color}) => {
+const PalleteContainer = styled.div`
+	display: flex;
+	flex-direction: column;
+	border-radius: 0.75rem;
+	border: solid 1px rgba(0,0,0,.1);
+	& ${ColorContainer}:first-child {
+		border-top-right-radius: 0.75rem;
+		border-top-left-radius: 0.75rem;
+	}
+	& ${ColorContainer}:last-child {
+		border-bottom-right-radius: 0.75rem;
+		border-bottom-left-radius: 0.75rem;
+	}
+`
+
+const ColorName = styled.div`
+	padding-right: 1rem;
+`
+
+const ColorStep = ({className, name, color}) => {
 	const contrastColor = getContrastText(color)
 	return  (
 		<ColorContainer
+			className={className}
 			color={color}
 			contrastColor={contrastColor}
 		>
+			<ColorName>
+				{name}
+			</ColorName>
 			{color}
 		</ColorContainer>
 	)
