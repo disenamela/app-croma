@@ -1,0 +1,33 @@
+//== Colors
+$gray-base: #000 !default;
+$gray-dark: lighten($gray-base, 20%) !default;   // #333
+
+$text-color: $gray-dark !default;
+$font-size-base: .9rem !default;
+
+
+//== Media queries breakpoints
+$screen-xs:                  480px !default;
+$screen-xs-min:              $screen-xs !default;
+
+$screen-sm:                  640px !default;
+$screen-sm-min:              $screen-sm !default;
+
+$screen-md:                  768px !default;
+$screen-md-min:              $screen-md !default;
+
+$screen-lg:                  1024px !default;
+$screen-lg-min:              $screen-lg !default;
+
+$screen-xl:                  1200px !default;
+
+// So media queries don't overlap when required, provide a maximum
+$screen-xs-max:              ($screen-sm-min - 1) !default;
+$screen-sm-max:              ($screen-md-min - 1) !default;
+$screen-md-max:              ($screen-lg-min - 1) !default;
+
+
+//== Grid system
+$grid-columns:              12 !default;
+$container-width:           1300px !default;
+$grid-gutter-width:         2rem;
