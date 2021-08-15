@@ -6,6 +6,7 @@ import logo from '../public/logo-app.png';
 import { createRangeColor, getContrastText } from '../utils/colors';
 import styled from 'styled-components';
 import { ColorPicker, useColor } from 'react-color-palette';
+import chroma from 'chroma-js';
 
 export default function Home() {
 	const defaultColor = '#9d61ff'
@@ -94,32 +95,30 @@ export default function Home() {
 							<input type="text" name='color' placeholder='#FFFFFF' value={form.color} onChange={handleInputChange} />
 						</div>
 					</div> */}
-					<div className='row'>
-						<div className='col'>
-							<ColorPicker width={300} height={228} color={color} onChange={handleChangeColor} hideHSV />
-						</div>
-					</div>
+					
+					<ColorPicker width={300} height={228} color={color} onChange={handleChangeColor} hideHSV  />
 
 				</SideBar>
 
-				<section id="results">
+				<section id="results" style={{backgroundColor: results && results.default}}>
 					<div className="container-sm">
 						{results &&
 							<>
-								<h2 className='mb-2'>Color principal</h2>
+								{/* <h2 className='mb-2 font-bold'>Color principal</h2>
 								<PalleteContainer>
 									<ColorStep
 										color={results.default}
 									/>
-								</PalleteContainer>
-								<h2 className='mt-4 mb-2'>Paleta</h2>
-								<PalleteContainer>
+								</PalleteContainer> */}
+								{/* <h2 className='mt-4 mb-2 font-bold'>Paleta</h2> */}
+								<PalleteContainer results={results}>
 									{colorKeys.map( (key) => (
 										<ColorStep
 											className='__colorStep'
 											key={key}
 											name={key}
 											color={results[key]}
+											isDefault={results.default === results[key]}
 										/>
 									))}
 								</PalleteContainer>
@@ -145,7 +144,9 @@ const PalleteContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	border-radius: 0.75rem;
-	border: solid 1px rgba(0,0,0,.1);
+	// border: solid 1px rgba(0,0,0,.1);
+	box-shadow: 0 1.25rem 2.5rem  ${({results}) => chroma(results.default).saturate(5).darken(1).alpha(.3).css()};
+
 	& ${ColorContainer}:first-child {
 		border-top-right-radius: 0.75rem;
 		border-top-left-radius: 0.75rem;
@@ -156,11 +157,12 @@ const PalleteContainer = styled.div`
 	}
 `
 
-const ColorName = styled.div`
+const ColorName = styled.strong`
 	padding-right: 1rem;
+	min-width: 40px;
 `
 
-const ColorStep = ({className, name, color}) => {
+const ColorStep = ({className, name, color, isDefault = false}) => {
 	const contrastColor = getContrastText(color)
 	return  (
 		<ColorContainer
@@ -168,10 +170,11 @@ const ColorStep = ({className, name, color}) => {
 			color={color}
 			contrastColor={contrastColor}
 		>
-			<ColorName>
+			{name && <ColorName>
 				{name}
-			</ColorName>
+			</ColorName>}
 			{color}
+			{isDefault && <span className="badge" style={{color: color, backgroundColor: contrastColor}}>Main Color</span>}
 		</ColorContainer>
 	)
 }

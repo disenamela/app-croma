@@ -1,11 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Anton:wght@400;700&display=swap');
-
-
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700,800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
 
 body {
 	@apply bg-main-50;
@@ -14,7 +9,7 @@ body {
 header {
 	.logo {
 		display: inline-block;
-		
+
 		img {
 			height: 4rem;
 		}
@@ -24,6 +19,10 @@ header {
 main {
 	min-height: 100vh;
 }
+
+/*=================================================================================================
+MAIN LAYOUT
+=================================================================================================*/
 
 .mainLayout {
 	display: grid;
@@ -58,11 +57,11 @@ main {
 				@apply transition-all duration-300 text-gray-800;
 				&.--h1,
 				&.--h2 {
-					margin-bottom: -.2em;
+					margin-bottom: -0.2em;
 				}
 				&.--h3,
 				&.--h4 {
-					margin-bottom: -.1em;
+					margin-bottom: -0.1em;
 				}
 				&.--h1,
 				&.--h2,
@@ -71,7 +70,7 @@ main {
 				&.--h5,
 				&.--h6 {
 					font-weight: bold;
-					letter-spacing: -.015em;
+					letter-spacing: -0.015em;
 				}
 			}
 
@@ -109,11 +108,9 @@ main {
 }
 
 h1 {
-	font-family: "Poppins";
+	font-family: 'Poppins';
 	font-size: 4rem;
 }
-
-
 
 p {
 	@apply my-3;
@@ -136,4 +133,69 @@ select {
 
 .row {
 	@apply gap-4;
+}
+
+/*=================================================================================================
+CUSTOM CSS FOR LIBRARIES
+=================================================================================================*/
+
+.rcp-saturation {
+	border-radius: 1rem !important;
+}
+
+.rcp-body {
+	padding-left: 0 !important;
+	padding-right: 0 !important;
+}
+
+.rcp-fields-element {
+	gap: 2px !important;
+}
+
+.rcp-fields-element-input {
+	--tw-bg-opacity: 1;
+	background-color: rgba(241, 245, 249, var(--tw-bg-opacity)) !important;
+	--tw-border-opacity: 0.1;
+	border: 1px solid rgba(100, 116, 139, var(--tw-border-opacity));
+	border-radius: 0.5rem !important;
+	border-width: 1px !important;
+	height: 3rem !important;
+	// padding: .5rem;
+	--tw-text-opacity: 1;
+	color: rgba(100, 116, 139, var(--tw-text-opacity)) !important;
+
+	&:focus {
+		@apply border-main-500;
+	}
+}
+
+.rcp-fields-element-label {
+	font-weight: bold !important;
+}
+
+.rcp-hue {
+	width: calc(100% - 40px) !important;
+}
+.rcp-fields {
+	display: flex !important;
+}
+
+/*=================================================================================================
+BLA
+=================================================================================================*/
+
+.__colorStep {
+	position: relative;
+
+	.badge {
+		position: absolute;
+		right: .75rem;
+		font-size: 80%;
+		display: inline-block;
+		border-radius: .25rem;
+		background: #fff;
+		color: #000;
+		font-weight: bold;
+		padding: 0 .3rem;
+	}
 }

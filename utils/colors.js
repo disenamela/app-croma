@@ -2,8 +2,8 @@ import chroma from 'chroma-js'
 
 export const getContrastText = (
 	color,
-	lightText = 'white',
-	darkText = 'black'
+	lightText = '#fff',
+	darkText = '#000'
 ) => {
 	return chroma(color).luminance() > 0.5 ? darkText : lightText
 }
