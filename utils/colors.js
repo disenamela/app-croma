@@ -11,16 +11,25 @@ export const getContrastText = (
 const generateChromaGradient = (color) => {
 	// Calc color luminance
 	const realColorLuminance = (1 - chroma(color).luminance()) * 10
+	
 	// Round color position
-	let roundedColorLuminance = Math.round(realColorLuminance) * 100 // from 0 to 1000
-	if(roundedColorLuminance === 0) {
+	let roundedColorLuminance = realColorLuminance;
+	if (realColorLuminance >= 6.5 && realColorLuminance < 9.5) {
+		roundedColorLuminance = realColorLuminance - 2;
+		if (roundedColorLuminance > 4.25 && roundedColorLuminance < 6) {
+			roundedColorLuminance = 5;
+		}
+	}
+	roundedColorLuminance = Math.round(roundedColorLuminance) * 100; // from 0 to 1000
+
+	if (roundedColorLuminance === 0) {
 		roundedColorLuminance = 50
 	}
-	if(roundedColorLuminance === 1000) {
+	if (roundedColorLuminance === 1000) {
 		roundedColorLuminance = 900
 	}
-	
-	console.log({realColorLuminance, roundedColorLuminance});
+
+	console.log(Math.round(realColorLuminance));
 
 	return chroma
 		.scale(['white', color, 'black'])
@@ -34,7 +43,7 @@ export const createRangeColor = (color) => {
 	} catch (e) {
 		gradient = generateChromaGradient('#ffffff')
 	}
-	console.log( gradient(5).hex() );
+	// console.log(gradient(5).hex());
 	return {
 		default: color,
 		50: gradient(50).hex(),
