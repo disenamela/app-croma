@@ -79,22 +79,6 @@ export default function Home() {
 							</select>
 						</div>
 					</div> */}
-
-					{/* <div className="row">
-						<div className="col">
-							<label htmlFor="fontFamily">Font Family</label>
-							<select name={'fontFamily'} value={form.fontFamily} onChange={handleInputChange}>
-								<option value="Arial">Arial</option>
-							</select>
-						</div>
-					</div> */}
-
-					{/* <div className='row'>
-						<div className='col'>
-							<label htmlFor="">Color</label>
-							<input type="text" name='color' placeholder='#FFFFFF' value={form.color} onChange={handleInputChange} />
-						</div>
-					</div> */}
 					
 					<ColorPicker width={300} height={228} color={color} onChange={handleChangeColor} hideHSV  />
 

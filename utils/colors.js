@@ -26,13 +26,14 @@ const generateChromaGradient = (color) => {
 		roundedColorLuminance = 50
 	}
 	if (roundedColorLuminance === 1000) {
-		roundedColorLuminance = 900
+		roundedColorLuminance = 950
 	}
 
-	console.log(Math.round(realColorLuminance));
+	// console.log(Math.round(realColorLuminance));
 
 	return chroma
 		.scale(['white', color, 'black'])
+		.mode('lrgb')
 		.domain([0, roundedColorLuminance, 1000])
 }
 
@@ -55,6 +56,6 @@ export const createRangeColor = (color) => {
 		600: gradient(600).hex(),
 		700: gradient(700).hex(),
 		800: gradient(800).hex(),
-		900: gradient(900).hex()
+		900: gradient(950).hex()
 	}
 }
